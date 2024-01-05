@@ -70,10 +70,10 @@ public class ReservationService {
 
         while (reservation == null) {
             System.out.println("Reservasi yang dicari tidak tersedia!");
-            System.out.println("Input IdReservasi untuk mengubah workstage");
+            System.out.println("Input IdReservasi untuk mengubah workstage: (Ketik Exit untuk keluar)");
             reservationId = input.nextLine();
 
-            if (reservationId.equals("0"))
+            if (reservationId.equalsIgnoreCase("Exit"))
                 break;
 
             reservation = findReservationById(reservationId, reservationList);
@@ -84,12 +84,12 @@ public class ReservationService {
             System.out.println("Reservasi ini selesai");
         }
 
-        if (reservation != null && !reservationId.equals("0")) {
+        if (reservation != null && !reservationId.equals("Exit")) {
             String newWorkstage = selectedWorkStage();
 
             reservation.setWorkstage(newWorkstage);
             System.out.println("Workstage berhasil diperbarui!");
-        } else if (!reservationId.equals("0")) {
+        } else if (!reservationId.equals("Exit")) {
             System.out.println("Reservasi tidak tersedia");
         }
     }
@@ -100,10 +100,10 @@ public class ReservationService {
         boolean loop = true;
 
         do {
-            System.out.println("Id Service untuk reservasi: (Input 0 untuk berhenti memilih)");
+            System.out.println("Id Service untuk reservasi: (Input Exit untuk berhenti memilih)");
             String serviceIdsInput = input.nextLine();
 
-            if (serviceIdsInput.equals("0"))
+            if (serviceIdsInput.equals("Exit"))
                 break;
 
             Service service = findServiceById(serviceIdsInput, serviceList);
